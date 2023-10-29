@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <title>KAJAM 2021</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@600&display=swap" rel="stylesheet">
+    </head>
+    <body style='cursor: crosshair; overflow: hidden; margin: 0; padding: 0;'>
+        <center><canvas id='c' width='1920px' height= '1080px' style='display: block; margin: 0; padding: 0; z-index: 0;'></canvas>
+          <canvas id='UI' width = '1920px' height='1080px' style='display: block; margin: 0; padding: 0; z-index: 1; position: absolute; left: 0px; top: 0px'></canvas></center>
+        <!--<script  id="vertex-shader-2d" type="notjs">
+
+            // an attribute will receive data from a buffer
+            attribute vec4 a_position;
+          
+            // all shaders have a main function
+            void main() {
+          
+              // gl_Position is a special variable a vertex shader
+              // is responsible for setting
+              gl_Position = a_position;
+            }
+          
+          </script>
+          <script  id="fragment-shader-2d" type="notjs">
+          
+            // fragment shaders don't have a default precision so we need
+            // to pick one. mediump is a good default
+            precision mediump float;
+          
+            void main() {
+              // gl_FragColor is a special variable a fragment shader
+              // is responsible for setting
+              gl_FragColor = vec4(1, 0, 0.5, 1); // return redish-purple
+            }
+          
+          </script>-->
+          <script id='vertex-shader-3d' type='notjs'>
+                attribute vec4 a_position;
+                attribute vec4 a_color;
+            
+                uniform mat4 u_matrix;
+                uniform float u_alpha;
+
+                varying vec4 v_color;
+            
+                void main() {
+                    gl_Position = u_matrix * a_position;
+                    
+                    v_color = vec4(a_color.xyz,u_alpha);
+                }
+            </script>
+            <script id='fragment-shader-3d' type='notjs'>
+                precision mediump float;
+                
+                varying vec4 v_color;
+            
+                void main() {
+                    gl_FragColor = v_color;
+                }
+            </script>
+    </body>
+</html>
+
+<script src='https://webglfundamentals.org/webgl/resources/webgl-utils.js'></script>
+<script src='https://webglfundamentals.org/webgl/resources/m4.js'></script>
+
+<script src = 'g.js'></script>
